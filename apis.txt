@@ -1,0 +1,65 @@
+{% comment %} These are the API endpoints for ChopSpots {% endcomment %}
+{% comment %} Everything here is from the admin part, I am still hadling User's View Which will be ready soon {% endcomment %}
+{% comment %} The when ever you login the token will be generated then you should put it bellow {% endcomment %}
+ url: {% comment %} No URL Yes because I am yet to host it {% endcomment %}
+headers : {
+                authorization: `Bearer ${token}`,
+                'content-type': 'application/json',
+                'cache-control': 'no-cache'    
+            }
+{% comment %} To Register a Vendor {% endcomment %}
+
+url: /admin/register
+method: POST
+
+inputs:
+[{"key":"name","type":"text"},
+{"key":"ownerName","type":"text"},
+{"key":"foodType","type":"text"},
+{"key":"pincode","type":"text"},
+{"key":"address","type":"text"},
+{"key":"email","type":"text"},
+{"key":"password","type":"text"},
+{"key":"phone","type":"text"},
+{"key":"image","type":"file"},
+{"key":"availability","type":"text"}]
+
+{% comment %} To Login a Vendor {% endcomment %}
+
+url: /admin/login
+method: POST
+
+inputs:
+{
+	"email":"values",
+	"password": "values"
+}
+{% comment %} To View a vendor's Profile{% endcomment %}
+You have to log in and have to be the owner of the resturant
+
+url:/vendor/profile
+method: GET
+
+{% comment %} To edit a vendor's Profile{% endcomment %}
+You have to log in and have to be the owner of the resturant
+
+url:/vendor/profile
+method: PATCH
+
+{% comment %} To Add food to a resturant {% endcomment %}
+You have to log in and have to be the owner of the resturant
+url:/vendor/food
+method: POST
+[{"key":"name","type":"text"},
+{"key":"discription","type":"text"},
+{"key":"foodType","type":"text"},
+{"key":"category","type":"text"},
+{"key":"price","type":"text"},
+{"key":"readyTime","type":"text"},
+{"key":"image","type":"file"}]
+
+{% comment %} To View foods under a particular resturant {% endcomment %}
+You have to log in and have to be the owner of the resturant
+
+url:/vendor/food
+method: GET
